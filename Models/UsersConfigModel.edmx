@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="KeyPayModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Configuration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="IntacctURL" Type="nvarchar(max)" />
+          <Property Name="IntacctCompanyID" Type="nvarchar" MaxLength="50" />
+          <Property Name="IntacctUserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IntacctPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IntacctSenderID" Type="nvarchar" MaxLength="50" />
+          <Property Name="IntacctSenderPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="JournalURL" Type="nvarchar(max)" />
+          <Property Name="KeyPayAPI" Type="nvarchar(max)" />
+          <Property Name="BusinessID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Journal" Type="nvarchar" MaxLength="20" />
+          <Property Name="PostingMode" Type="nvarchar" MaxLength="20" />
+          <Property Name="LogFiles" Type="nvarchar(max)" />
+          <Property Name="FromEmail" Type="nvarchar" MaxLength="75" />
+          <Property Name="EmailPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SMTPServer" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailPort" Type="nvarchar" MaxLength="20" />
+          <Property Name="SSL" Type="nvarchar" MaxLength="10" />
+          <Property Name="ToEmail" Type="nvarchar" MaxLength="75" />
+          <Property Name="CCEmail" Type="nvarchar" MaxLength="75" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="KeyPayModelStoreContainer">
+          <EntitySet Name="Configuration" EntityType="Self.Configuration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KeyPayModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="UsersConfigModel" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Configurations" EntityType="KeyPayModel.Configuration" />
+        </EntityContainer>
+        <EntityType Name="Configuration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="IntacctURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IntacctCompanyID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IntacctUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IntacctPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IntacctSenderID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IntacctSenderPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="JournalURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KeyPayAPI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BusinessID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Journal" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PostingMode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LogFiles" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FromEmail" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="EmailPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SMTPServer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailPort" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SSL" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ToEmail" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="CCEmail" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KeyPayModelStoreContainer" CdmEntityContainer="UsersConfigModel">
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="KeyPayModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Configurations">
+            <EntityTypeMapping TypeName="KeyPayModel.Configuration">
+              <MappingFragment StoreEntitySet="Configuration">
+                <ScalarProperty Name="CCEmail" ColumnName="CCEmail" />
+                <ScalarProperty Name="ToEmail" ColumnName="ToEmail" />
+                <ScalarProperty Name="SSL" ColumnName="SSL" />
+                <ScalarProperty Name="EmailPort" ColumnName="EmailPort" />
+                <ScalarProperty Name="SMTPServer" ColumnName="SMTPServer" />
+                <ScalarProperty Name="EmailPassword" ColumnName="EmailPassword" />
+                <ScalarProperty Name="FromEmail" ColumnName="FromEmail" />
+                <ScalarProperty Name="LogFiles" ColumnName="LogFiles" />
+                <ScalarProperty Name="PostingMode" ColumnName="PostingMode" />
+                <ScalarProperty Name="Journal" ColumnName="Journal" />
+                <ScalarProperty Name="BusinessID" ColumnName="BusinessID" />
+                <ScalarProperty Name="KeyPayAPI" ColumnName="KeyPayAPI" />
+                <ScalarProperty Name="JournalURL" ColumnName="JournalURL" />
+                <ScalarProperty Name="IntacctSenderPassword" ColumnName="IntacctSenderPassword" />
+                <ScalarProperty Name="IntacctSenderID" ColumnName="IntacctSenderID" />
+                <ScalarProperty Name="IntacctPassword" ColumnName="IntacctPassword" />
+                <ScalarProperty Name="IntacctUserName" ColumnName="IntacctUserName" />
+                <ScalarProperty Name="IntacctCompanyID" ColumnName="IntacctCompanyID" />
+                <ScalarProperty Name="IntacctURL" ColumnName="IntacctURL" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,227 @@
+﻿@model KeyPay.Models.Configuration
+
+@{
+    ViewBag.Title = "Configuration";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Configuration</h2>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#SageIntacct">Sage Intacct</a></li>
+            <li><a href="#keypay">Key Pay</a></li>
+            <li><a href="#email">Email</a></li>
+        </ul>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+        <div class="tab-content">
+            <div id="SageIntacct" class="tab-pane fade in active">
+                <div class="form-horizontal">
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Intacct URL</label>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.IntacctURL, new { htmlAttributes = new { @class = "form-control", placeholder = "Intacct URL", maxlength = 40, @disabled = true, style = "cursor: default;" } })
+                            @Html.ValidationMessageFor(model => model.IntacctURL, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Intacct Company ID</label>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.IntacctCompanyID, new { htmlAttributes = new { @class = "form-control", placeholder = "Intacct Company ID", maxlength = 40, @disabled = true, style = "cursor: default;" } })
+                            @Html.ValidationMessageFor(model => model.IntacctCompanyID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Intacct User Name</label>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.IntacctUserName, new { htmlAttributes = new { @class = "form-control", placeholder = "Intacct User Name", maxlength = 40, @disabled = true, style = "cursor: default;" } })
+                            @Html.ValidationMessageFor(model => model.IntacctUserName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Intacct Password</label>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.IntacctPassword, new { htmlAttributes = new { @class = "form-control", placeholder = "Intacct Password", maxlength = 40, @disabled = true, style = "cursor: default;" } })
+                            @Html.ValidationMessageFor(model => model.IntacctPassword, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Intacct Sender ID</label>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.IntacctSenderID, new { htmlAttributes = new { @class = "form-control", placeholder = "Intacct Sender ID", maxlength = 40, @disabled = true, style = "cursor: default;" } })
+                            @Html.ValidationMessageFor(model => model.IntacctSenderID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Intacct Sender Password</label>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.IntacctSenderPassword, new { htmlAttributes = new { @class = "form-control", placeholder = "Intacct Sender Password", maxlength = 40, @disabled = true, style = "cursor: default;" } })
+                            @Html.ValidationMessageFor(model => model.IntacctSenderPassword, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9">
+                            <input type="button" class="btn btn-info btn-lg" name="Edit" value="Edit" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="keypay" class="tab-pane fade">
+                <div class="form-horizontal">
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Journal URL</label>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.JournalURL, new { htmlAttributes = new { @class = "form-control", placeholder = "Journal URL", maxlength = 40, @disabled = true, style = "cursor: default;" } })
+                            @Html.ValidationMessageFor(model => model.JournalURL, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">KeyPay API</label>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.KeyPayAPI, new { htmlAttributes = new { @class = "form-control", placeholder = "KeyPay API", maxlength = 40, @disabled = true, style = "cursor: default;" } })
+                            @Html.ValidationMessageFor(model => model.KeyPayAPI, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Business ID</label>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.BusinessID, new { htmlAttributes = new { @class = "form-control", placeholder = "Business ID", maxlength = 40, @disabled = true, style = "cursor: default;" } })
+                            @Html.ValidationMessageFor(model => model.BusinessID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Journal</label>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Journal, new { htmlAttributes = new { @class = "form-control", placeholder = "Journal", maxlength = 40, @disabled = true, style = "cursor: default;" } })
+                            @Html.ValidationMessageFor(model => model.Journal, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Posting Mode</label>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.PostingMode, new { htmlAttributes = new { @class = "form-control", placeholder = "Posting Mode", maxlength = 40, @disabled = true, style = "cursor: default;" } })
+                            @Html.ValidationMessageFor(model => model.PostingMode, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Log Files</label>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.LogFiles, new { htmlAttributes = new { @class = "form-control", placeholder = "Log Files", maxlength = 40, @disabled = true, style = "cursor: default;" } })
+                            @Html.ValidationMessageFor(model => model.LogFiles, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9">
+                            <input type="button" class="btn btn-info btn-lg" name="Edit" value="Edit" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="email" class="tab-pane fade">
+                <div class="form-horizontal">
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">From Email</label>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.FromEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "From Email", maxlength = 40, @disabled = true, style = "cursor: default;" } })
+                            @Html.ValidationMessageFor(model => model.FromEmail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Email Password</label>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.EmailPassword, new { htmlAttributes = new { @class = "form-control", placeholder = "Email Password", maxlength = 40, @disabled = true, style = "cursor: default;" } })
+                            @Html.ValidationMessageFor(model => model.EmailPassword, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">SMTP Server</label>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.SMTPServer, new { htmlAttributes = new { @class = "form-control", placeholder = "SMTP Server", maxlength = 40, @disabled = true, style = "cursor: default;" } })
+                            @Html.ValidationMessageFor(model => model.SMTPServer, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Email Port</label>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.EmailPort, new { htmlAttributes = new { @class = "form-control", placeholder = "Email Port", maxlength = 40, @disabled = true, style = "cursor: default;" } })
+                            @Html.ValidationMessageFor(model => model.EmailPort, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">SSL</label>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.SSL, new { htmlAttributes = new { @class = "form-control", placeholder = "SSL", maxlength = 40, @disabled = true, style = "cursor: default;" } })
+                            @Html.ValidationMessageFor(model => model.SSL, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">To Email</label>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.ToEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "To Email", maxlength = 40, @disabled = true, style = "cursor: default;" } })
+                            @Html.ValidationMessageFor(model => model.ToEmail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">CC Email</label>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.CCEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "CC Email", maxlength = 40, @disabled = true, style = "cursor: default;" } })
+                            @Html.ValidationMessageFor(model => model.CCEmail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9">
+                            <input type="button" class="btn btn-info btn-lg" name="Edit" value="Edit" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $(".nav-tabs a").click(function () {
+                $(this).tab('show');
+            });
+        });
+    </script>
+</body>
+</html>
