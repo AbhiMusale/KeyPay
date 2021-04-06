@@ -16,8 +16,8 @@ namespace KeyPay.Models
     {
         public int ID { get; set; }
 
-        [Required]
-        [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage ="User Name required.")]
+        //[DataType(DataType.EmailAddress)]
         public string UserName { get; set; }
 
         [Required]
@@ -31,5 +31,7 @@ namespace KeyPay.Models
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Password does not match!")]
         public string ConfirmPassword { get; set; }
+
+
     }
 }

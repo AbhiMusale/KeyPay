@@ -10,25 +10,28 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="IntacctURL" Type="nvarchar(max)" />
-          <Property Name="IntacctCompanyID" Type="nvarchar" MaxLength="50" />
-          <Property Name="IntacctUserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IntacctURL" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IntacctCompanyID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IntacctUserName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IntacctPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="IntacctSenderID" Type="nvarchar" MaxLength="50" />
+          <Property Name="IntacctSenderID" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IntacctSenderPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="JournalURL" Type="nvarchar(max)" />
-          <Property Name="KeyPayAPI" Type="nvarchar(max)" />
-          <Property Name="BusinessID" Type="nvarchar" MaxLength="50" />
-          <Property Name="Journal" Type="nvarchar" MaxLength="20" />
-          <Property Name="PostingMode" Type="nvarchar" MaxLength="20" />
-          <Property Name="LogFiles" Type="nvarchar(max)" />
-          <Property Name="FromEmail" Type="nvarchar" MaxLength="75" />
+          <Property Name="JournalURL" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="KeyPayAPI" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="BusinessID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Journal" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PostingMode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="LogFiles" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FromEmail" Type="nvarchar" MaxLength="75" Nullable="false" />
           <Property Name="EmailPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="SMTPServer" Type="nvarchar" MaxLength="50" />
-          <Property Name="EmailPort" Type="nvarchar" MaxLength="20" />
-          <Property Name="SSL" Type="nvarchar" MaxLength="10" />
-          <Property Name="ToEmail" Type="nvarchar" MaxLength="75" />
+          <Property Name="SMTPServer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailPort" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="SSL" Type="bit" Nullable="false" />
+          <Property Name="ToEmail" Type="nvarchar" MaxLength="75" Nullable="false" />
           <Property Name="CCEmail" Type="nvarchar" MaxLength="75" />
+          <Property Name="Department" Type="int" Nullable="false" />
+          <Property Name="Location" Type="int" Nullable="false" />
+          <Property Name="Project" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -63,25 +66,28 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="IntacctURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IntacctCompanyID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IntacctUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IntacctURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IntacctCompanyID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IntacctUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IntacctPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IntacctSenderID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IntacctSenderID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IntacctSenderPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="JournalURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="KeyPayAPI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="BusinessID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Journal" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="PostingMode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="LogFiles" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="FromEmail" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="JournalURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KeyPayAPI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BusinessID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Journal" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PostingMode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LogFiles" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FromEmail" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EmailPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SMTPServer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EmailPort" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="SSL" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ToEmail" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="SMTPServer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailPort" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SSL" Type="Boolean" Nullable="false" />
+          <Property Name="ToEmail" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CCEmail" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="Int32" Nullable="false" />
+          <Property Name="Location" Type="Int32" Nullable="false" />
+          <Property Name="Project" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -101,6 +107,9 @@
           <EntitySetMapping Name="Configurations">
             <EntityTypeMapping TypeName="KeyPayModel.Configuration">
               <MappingFragment StoreEntitySet="Configuration">
+                <ScalarProperty Name="Project" ColumnName="Project" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
                 <ScalarProperty Name="CCEmail" ColumnName="CCEmail" />
                 <ScalarProperty Name="ToEmail" ColumnName="ToEmail" />
                 <ScalarProperty Name="SSL" ColumnName="SSL" />

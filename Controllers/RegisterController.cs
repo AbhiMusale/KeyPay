@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Security.Cryptography;
@@ -81,24 +82,42 @@ namespace KeyPay.Controllers
             }
         }
 
-        // GET: Register/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public ActionResult Edit(int ID)
         {
-            return View();
+            using (UsersConfigModel usersConfigModel = new UsersConfigModel())
+            {
+                ModelState.Clear();
+                var user = usersConfigModel.Users.Where(x => x.ID == ID).FirstOrDefault();
+                return View(user);
+            }
         }
 
         // POST: Register/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(User user)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    // TODO: Add update logic here
+                    using (UsersConfigModel usersConfigModel = new UsersConfigModel())
+                    {
+                        usersConfigModel.Users.AddOrUpdate(user);
+                        usersConfigModel.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                }
+                else
+                {
+                    return View(user);
+                }
             }
-            catch
+            catch(Exception ex)
             {
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
         }

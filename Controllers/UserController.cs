@@ -1,6 +1,9 @@
 ﻿using KeyPay.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -12,6 +15,8 @@ namespace KeyPay.Controllers
 {
     public class UserController : Controller
     {
+
+        UsersConfigModel usersConfigModel = new UsersConfigModel();
         // GET: User/Login
         public ActionResult Index()
         {
@@ -32,30 +37,60 @@ namespace KeyPay.Controllers
                 var isUserExists = usersConfigModel.Users.Any(x => x.UserName == user.UserName);
                 if (isUserExists)
                 {
-                    string dbEncryptedPassword = usersConfigModel.Users.Where(x => x.UserName == user.UserName).Select(x => x.Password).FirstOrDefault();
-                    string dbDecryptedPassword = DecryptData(dbEncryptedPassword);
-                    if (user.Password == dbDecryptedPassword)
+                    //string dbEncryptedPassword = usersConfigModel.Users.Where(x => x.UserName == user.UserName).Select(x => x.Password).FirstOrDefault();
+                    //string dbDecryptedPassword = DecryptData(dbEncryptedPassword);
+                    string Password = usersConfigModel.Users.Where(x => x.UserName == user.UserName).Select(x => x.Password).FirstOrDefault();
+                    if (user.Password == Password)
                     {
                         return RedirectToAction("Configuration", "User");
                     }
+                    else
+                    {
+                        ViewBag.ErrorMessage = "Password incorrect!";
+                    }
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "User does not exists!";
                 }
             }
             return View();
         }
 
         [HttpGet]
-        public ActionResult Configuration(UsersConfigModel usersConfigModel)
+        public ActionResult Configuration()
         {
-            //var data = usersConfigModel.Configurations.FirstOrDefault();
-            if (ViewBag.Data == null)
-                ViewBag.Data = usersConfigModel.Configurations.FirstOrDefault();
-            return View(ViewBag.Data);
+            //using (UsersConfigModel usersConfigModel = new UsersConfigModel())
+            {
+                //var data = usersConfigModel.Configurations.FirstOrDefault();
+                if (ViewBag.Data == null)
+                    ViewBag.Data = usersConfigModel.Configurations.FirstOrDefault();
+                return View(ViewBag.Data);
+            }
         }
 
         [HttpPost]
         public ActionResult Configuration(Configuration configuration)
         {
-            return View();
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    usersConfigModel.Configurations.AddOrUpdate(configuration);
+                    usersConfigModel.SaveChanges();
+                    ViewBag.Message = "Update successful!";
+                    return RedirectToAction("Configuration");
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = ex.Message;
+                return View();
+            }
         }
 
         string DecryptData(string data)

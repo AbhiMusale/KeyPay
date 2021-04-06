@@ -11,28 +11,69 @@ namespace KeyPay.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Configuration
     {
         public int ID { get; set; }
+        [Required]
         public string IntacctURL { get; set; }
+        [Required]
         public string IntacctCompanyID { get; set; }
+        [Required]
+        //[DataType(DataType.Password)]
         public string IntacctUserName { get; set; }
+        [Required]
+        //[DataType(DataType.Password)]
         public string IntacctPassword { get; set; }
+        [Required]
         public string IntacctSenderID { get; set; }
+        [Required]
+        //[DataType(DataType.Password)]
         public string IntacctSenderPassword { get; set; }
+        [Required]
         public string JournalURL { get; set; }
+        [Required]
+        //[DataType(DataType.Password)]
         public string KeyPayAPI { get; set; }
+        [Required]
         public string BusinessID { get; set; }
+        [Required]
         public string Journal { get; set; }
+        [Required]
         public string PostingMode { get; set; }
+        [Required]
         public string LogFiles { get; set; }
+        [Required]
+        [DataType(DataType.EmailAddress)]
         public string FromEmail { get; set; }
+        [Required]
+        //[DataType(DataType.Password)]
         public string EmailPassword { get; set; }
+        [Required]
         public string SMTPServer { get; set; }
+        [Required]
         public string EmailPort { get; set; }
-        public string SSL { get; set; }
+        [Required]
+        public bool SSL { get; set; }
+        [Required]
+        [DataType(DataType.EmailAddress)]
         public string ToEmail { get; set; }
+        [DataType(DataType.EmailAddress)]
         public string CCEmail { get; set; }
+        //[DefaultValue("-1")]
+        public int Department { get; set; }
+        //[DefaultValue("-1")]
+        public int Location { get; set; }
+        //[DefaultValue("-1")]
+        public int Project { get; set; }
     }
+
+    public enum PostingModes
+    {
+        Draft,
+        Posted
+    }
+
 }
