@@ -76,6 +76,12 @@ namespace KeyPay.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    //if ((configuration.Department == configuration.Location) || (configuration.Department == configuration.Project) || (configuration.Location == configuration.Project) || ((configuration.Department == configuration.Location) && (configuration.Department == configuration.Project) && (configuration.Location == configuration.Project)))
+                    if ((configuration.Department == configuration.Location) || (configuration.Department == configuration.Project) || (configuration.Location == configuration.Project))
+                    {
+                        ViewBag.Message = "Some Dimensions are similar!";
+                        return View();
+                    }
                     usersConfigModel.Configurations.AddOrUpdate(configuration);
                     usersConfigModel.SaveChanges();
                     ViewBag.Message = "Update successful!";
