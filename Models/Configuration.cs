@@ -13,6 +13,7 @@ namespace KeyPay.Models
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public partial class Configuration
     {
@@ -22,21 +23,25 @@ namespace KeyPay.Models
         [Required]
         public string IntacctCompanyID { get; set; }
         [Required]
-        //[DataType(DataType.Password)]
-        public string IntacctUserName { get; set; }
+        public byte[] IntacctUserName { get; set; }
+        [NotMapped]
+        public string strIntacctUserName { get; set; }
         [Required]
-        //[DataType(DataType.Password)]
-        public string IntacctPassword { get; set; }
+        public byte[] IntacctPassword { get; set; }
+        [NotMapped]
+        public string strIntacctPassword { get; set; }
         [Required]
         public string IntacctSenderID { get; set; }
         [Required]
-        //[DataType(DataType.Password)]
-        public string IntacctSenderPassword { get; set; }
+        public byte[] IntacctSenderPassword { get; set; }
+        [NotMapped]
+        public string strIntacctSenderPassword { get; set; }
         [Required]
         public string JournalURL { get; set; }
         [Required]
-        //[DataType(DataType.Password)]
-        public string KeyPayAPI { get; set; }
+        public byte[] KeyPayAPI { get; set; }
+        [NotMapped]
+        public string strKeyPayAPI { get; set; }
         [Required]
         public string BusinessID { get; set; }
         [Required]
@@ -49,8 +54,9 @@ namespace KeyPay.Models
         [DataType(DataType.EmailAddress)]
         public string FromEmail { get; set; }
         [Required]
-        //[DataType(DataType.Password)]
-        public string EmailPassword { get; set; }
+        public byte[] EmailPassword { get; set; }
+        [NotMapped]
+        public string strEmailPassword { get; set; }
         [Required]
         public string SMTPServer { get; set; }
         [Required]
@@ -62,11 +68,8 @@ namespace KeyPay.Models
         public string ToEmail { get; set; }
         [DataType(DataType.EmailAddress)]
         public string CCEmail { get; set; }
-        //[DefaultValue("-1")]
         public int Department { get; set; }
-        //[DefaultValue("-1")]
         public int Location { get; set; }
-        //[DefaultValue("-1")]
         public int Project { get; set; }
     }
 

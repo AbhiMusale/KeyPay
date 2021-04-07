@@ -37,10 +37,9 @@ namespace KeyPay.Controllers
                 var isUserExists = usersConfigModel.Users.Any(x => x.UserName == user.UserName);
                 if (isUserExists)
                 {
-                    //string dbEncryptedPassword = usersConfigModel.Users.Where(x => x.UserName == user.UserName).Select(x => x.Password).FirstOrDefault();
-                    //string dbDecryptedPassword = DecryptData(dbEncryptedPassword);
-                    string Password = usersConfigModel.Users.Where(x => x.UserName == user.UserName).Select(x => x.Password).FirstOrDefault();
-                    if (user.Password == Password)
+                    byte[] dbPassword = usersConfigModel.Users.Where(x => x.UserName == user.UserName).Select(x => x.Password).FirstOrDefault();
+                    string dbDecryptedPassword = DecryptData(dbPassword);
+                    if (user.strPassword == dbDecryptedPassword)
                     {
                         return RedirectToAction("Configuration", "User");
                     }
@@ -60,13 +59,14 @@ namespace KeyPay.Controllers
         [HttpGet]
         public ActionResult Configuration()
         {
-            //using (UsersConfigModel usersConfigModel = new UsersConfigModel())
-            {
-                //var data = usersConfigModel.Configurations.FirstOrDefault();
-                if (ViewBag.Data == null)
-                    ViewBag.Data = usersConfigModel.Configurations.FirstOrDefault();
-                return View(ViewBag.Data);
-            }
+            ModelState.Clear();
+            var data = usersConfigModel.Configurations.FirstOrDefault();
+            data.strIntacctUserName = DecryptData(data.IntacctUserName);
+            data.strIntacctPassword = DecryptData(data.IntacctPassword);
+            data.strIntacctSenderPassword = DecryptData(data.IntacctSenderPassword);
+            data.strKeyPayAPI = DecryptData(data.KeyPayAPI);
+            data.strEmailPassword = DecryptData(data.EmailPassword);
+            return View(data);
         }
 
         [HttpPost]
@@ -74,7 +74,7 @@ namespace KeyPay.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+                //if (ModelState.IsValid)
                 {
                     //if ((configuration.Department == configuration.Location) || (configuration.Department == configuration.Project) || (configuration.Location == configuration.Project) || ((configuration.Department == configuration.Location) && (configuration.Department == configuration.Project) && (configuration.Location == configuration.Project)))
                     if ((configuration.Department == configuration.Location) || (configuration.Department == configuration.Project) || (configuration.Location == configuration.Project))
@@ -82,15 +82,20 @@ namespace KeyPay.Controllers
                         ViewBag.Message = "Some Dimensions are similar!";
                         return View();
                     }
+                    configuration.IntacctUserName = EncryptData(configuration.strIntacctUserName);
+                    configuration.IntacctPassword = EncryptData(configuration.strIntacctPassword);
+                    configuration.IntacctSenderPassword = EncryptData(configuration.strIntacctSenderPassword);
+                    configuration.KeyPayAPI = EncryptData(configuration.strKeyPayAPI);
+                    configuration.EmailPassword = EncryptData(configuration.strEmailPassword);
                     usersConfigModel.Configurations.AddOrUpdate(configuration);
                     usersConfigModel.SaveChanges();
                     ViewBag.Message = "Update successful!";
                     return RedirectToAction("Configuration");
                 }
-                else
-                {
-                    return View();
-                }
+                //else
+                //{
+                //    return View();
+                //}
             }
             catch (Exception ex)
             {
@@ -99,11 +104,25 @@ namespace KeyPay.Controllers
             }
         }
 
-        string DecryptData(string data)
+        //string DecryptData(string data)
+        //{
+        //    byte[] byteData = Encoding.UTF8.GetBytes(data);
+        //    string encryptedData = string.Join("", ProtectedData.Unprotect(byteData, new byte[] { }, DataProtectionScope.CurrentUser));
+        //    return encryptedData;
+        //}
+
+        byte[] EncryptData(string data)
         {
             byte[] byteData = Encoding.UTF8.GetBytes(data);
-            string encryptedData = string.Join("", ProtectedData.Unprotect(byteData, new byte[] { }, DataProtectionScope.CurrentUser));
+            byte[] encryptedData = ProtectedData.Protect(byteData, new byte[] { }, DataProtectionScope.CurrentUser);
             return encryptedData;
+        }
+
+        string DecryptData(byte[] data)
+        {
+            byte[] decryptedData = ProtectedData.Unprotect(data, new byte[] { }, DataProtectionScope.CurrentUser);
+            string decryptedString = Encoding.UTF8.GetString(decryptedData);
+            return decryptedString;
         }
     }
 }

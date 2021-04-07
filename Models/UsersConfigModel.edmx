@@ -12,18 +12,18 @@
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="IntacctURL" Type="nvarchar(max)" Nullable="false" />
           <Property Name="IntacctCompanyID" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="IntacctUserName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="IntacctPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IntacctUserName" Type="varbinary(max)" Nullable="false" />
+          <Property Name="IntacctPassword" Type="varbinary(max)" Nullable="false" />
           <Property Name="IntacctSenderID" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="IntacctSenderPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IntacctSenderPassword" Type="varbinary(max)" Nullable="false" />
           <Property Name="JournalURL" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="KeyPayAPI" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="KeyPayAPI" Type="varbinary(max)" Nullable="false" />
           <Property Name="BusinessID" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Journal" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="PostingMode" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="LogFiles" Type="nvarchar(max)" Nullable="false" />
           <Property Name="FromEmail" Type="nvarchar" MaxLength="75" Nullable="false" />
-          <Property Name="EmailPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailPassword" Type="varbinary(max)" Nullable="false" />
           <Property Name="SMTPServer" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EmailPort" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="SSL" Type="bit" Nullable="false" />
@@ -39,7 +39,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="varbinary(max)" Nullable="false" />
         </EntityType>
         <EntityContainer Name="KeyPayModelStoreContainer">
           <EntitySet Name="Configuration" EntityType="Self.Configuration" Schema="dbo" store:Type="Tables" />
@@ -55,7 +55,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="Binary" Nullable="false" />
         </EntityType>
         <EntityContainer Name="UsersConfigModel" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Users" EntityType="Self.User" />
@@ -68,18 +68,18 @@
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="IntacctURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IntacctCompanyID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IntacctUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IntacctPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IntacctUserName" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="IntacctPassword" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="IntacctSenderID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IntacctSenderPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IntacctSenderPassword" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="JournalURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="KeyPayAPI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KeyPayAPI" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="BusinessID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Journal" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PostingMode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LogFiles" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FromEmail" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EmailPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailPassword" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="SMTPServer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EmailPort" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SSL" Type="Boolean" Nullable="false" />

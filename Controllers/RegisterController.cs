@@ -43,14 +43,14 @@ namespace KeyPay.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
                 using (UsersConfigModel usersConfigModel = new UsersConfigModel())
                 {
-                    //string encryptedPassword = EncryptData(user.Password);
+                    //byte[] encryptedPassword = EncryptData(user.strPassword);
                     //user.Password = encryptedPassword;
                     var isExists = usersConfigModel.Users.Any(x => x.UserName == user.UserName);
                     if (!isExists)
                     {
+                        user.Password = EncryptData(user.strPassword);
                         usersConfigModel.Users.Add(user);
                         usersConfigModel.SaveChanges();
                         return RedirectToAction("Index");
@@ -73,12 +73,12 @@ namespace KeyPay.Controllers
                         //Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
                     }
                 }
-                ViewBag.ErrorMessage = "Registration failed!";
+                ViewBag.ErrorMessage = $"Registration failed! ({ex.Message})";
                 return View();
             }
             catch (Exception ex)
             {
-                ViewBag.ErrorMessage = "Registration failed!";
+                ViewBag.ErrorMessage = $"Registration failed! ({ex.Message})";
                 return View();
             }
         }
@@ -117,7 +117,7 @@ namespace KeyPay.Controllers
                     return View(user);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ViewBag.ErrorMessage = ex.Message;
                 return View();
@@ -146,11 +146,33 @@ namespace KeyPay.Controllers
             }
         }
 
-        string EncryptData(string data)
+        //string EncryptData(string data)
+        //{
+        //    byte[] byteData = Encoding.UTF8.GetBytes(data);
+        //    string encryptedData = string.Join("", ProtectedData.Protect(byteData, new byte[] { }, DataProtectionScope.CurrentUser));
+        //    return encryptedData;
+        //}
+
+        //byte[] EncryptData(string data)
+        //{
+        //    byte[] byteData = Encoding.UTF8.GetBytes(data);
+        //    byte[] encryptedData = ProtectedData.Protect(byteData, new byte[] { }, DataProtectionScope.CurrentUser);
+        //    return encryptedData;
+        //}
+
+        byte[] EncryptData(string data)
         {
             byte[] byteData = Encoding.UTF8.GetBytes(data);
-            string encryptedData = string.Join("", ProtectedData.Protect(byteData, new byte[] { }, DataProtectionScope.CurrentUser));
+            byte[] encryptedData = ProtectedData.Protect(byteData, new byte[] { }, DataProtectionScope.CurrentUser);
             return encryptedData;
         }
+
+        string DecryptData(byte[] data)
+        {
+            byte[] decryptedData = ProtectedData.Unprotect(data, new byte[] { }, DataProtectionScope.CurrentUser);
+            string decryptedString = Encoding.UTF8.GetString(decryptedData);
+            return decryptedString;
+        }
+
     }
 }

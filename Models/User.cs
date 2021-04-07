@@ -16,20 +16,23 @@ namespace KeyPay.Models
     {
         public int ID { get; set; }
 
-        [Required(ErrorMessage ="User Name required.")]
+        [Required(ErrorMessage = "User Name required.")]
         //[DataType(DataType.EmailAddress)]
         public string UserName { get; set; }
 
-        [Required]
+        //[Required]
+        //[DataType(DataType.Password)]
+        public byte[] Password { get; set; }
+
+        [NotMapped]
+        [Required(ErrorMessage = "The Password field is required.")]
         [DataType(DataType.Password)]
-        //[MaxLength(16, ErrorMessage = "The field Password must be a maximum length of '16' characters.")]
-        //[MinLength(8, ErrorMessage = "The field Password must be a minimum length of '8' characters.")]
-        public string Password { get; set; }
+        public string strPassword { get; set; }
 
         [NotMapped]
         [Required]
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Password does not match!")]
+        [Compare("strPassword", ErrorMessage = "Password does not match!")]
         public string ConfirmPassword { get; set; }
 
 
