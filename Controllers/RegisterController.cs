@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
@@ -105,7 +106,8 @@ namespace KeyPay.Controllers
                     // TODO: Add update logic here
                     using (UsersConfigModel usersConfigModel = new UsersConfigModel())
                     {
-                        usersConfigModel.Users.AddOrUpdate(user);
+                        //usersConfigModel.Users.AddOrUpdate(user);
+                        usersConfigModel.Entry(user).State = EntityState.Modified;
                         usersConfigModel.SaveChanges();
                         return RedirectToAction("Index");
                     }
