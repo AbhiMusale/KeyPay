@@ -73,32 +73,27 @@ namespace KeyPay.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Configuration(Configuration configuration)
         {
             try
             {
-                //if (ModelState.IsValid)
+                usersConfigModel.Configuration.ValidateOnSaveEnabled = false;
+                //if ((configuration.Department == configuration.Location) || (configuration.Department == configuration.Project) || (configuration.Location == configuration.Project) || ((configuration.Department == configuration.Location) && (configuration.Department == configuration.Project) && (configuration.Location == configuration.Project)))
+                if ((configuration.Department == configuration.Location) || (configuration.Department == configuration.Project) || (configuration.Location == configuration.Project))
                 {
-                    //if ((configuration.Department == configuration.Location) || (configuration.Department == configuration.Project) || (configuration.Location == configuration.Project) || ((configuration.Department == configuration.Location) && (configuration.Department == configuration.Project) && (configuration.Location == configuration.Project)))
-                    if ((configuration.Department == configuration.Location) || (configuration.Department == configuration.Project) || (configuration.Location == configuration.Project))
-                    {
-                        ViewBag.Message = "Some Dimensions are similar!";
-                        return View();
-                    }
-                    configuration.IntacctUserName = EncryptData(configuration.strIntacctUserName);
-                    configuration.IntacctPassword = EncryptData(configuration.strIntacctPassword);
-                    configuration.IntacctSenderPassword = EncryptData(configuration.strIntacctSenderPassword);
-                    configuration.KeyPayAPI = EncryptData(configuration.strKeyPayAPI);
-                    configuration.EmailPassword = EncryptData(configuration.strEmailPassword);
-                    usersConfigModel.Configurations.AddOrUpdate(configuration);
-                    usersConfigModel.SaveChanges();
-                    ViewBag.Message = "Update successful!";
-                    return RedirectToAction("Configuration");
+                    ViewBag.Message = "Some Dimensions are similar!";
+                    return View();
                 }
-                //else
-                //{
-                //    return View();
-                //}
+                configuration.IntacctUserName = EncryptData(configuration.strIntacctUserName);
+                configuration.IntacctPassword = EncryptData(configuration.strIntacctPassword);
+                configuration.IntacctSenderPassword = EncryptData(configuration.strIntacctSenderPassword);
+                configuration.KeyPayAPI = EncryptData(configuration.strKeyPayAPI);
+                configuration.EmailPassword = EncryptData(configuration.strEmailPassword);
+                usersConfigModel.Configurations.AddOrUpdate(configuration);
+                usersConfigModel.SaveChanges();
+                ViewBag.Message = "Update successful!";
+                return View();
             }
             catch (Exception ex)
             {

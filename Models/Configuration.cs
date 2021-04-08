@@ -17,60 +17,94 @@ namespace KeyPay.Models
 
     public partial class Configuration
     {
+
         public int ID { get; set; }
+
         [Required]
         public string IntacctURL { get; set; }
+        
         [Required]
         public string IntacctCompanyID { get; set; }
-        [Required]
+        
+        //[Required]
         public byte[] IntacctUserName { get; set; }
+        
         [NotMapped]
+        [Required(ErrorMessage = "Intacct User Name is required.")]
         public string strIntacctUserName { get; set; }
-        [Required]
+
+        //[Required]
         public byte[] IntacctPassword { get; set; }
+        
         [NotMapped]
+        [Required(ErrorMessage = "Intacct Password is required.")]
         public string strIntacctPassword { get; set; }
+        
         [Required]
         public string IntacctSenderID { get; set; }
-        [Required]
+
+        //[Required]
         public byte[] IntacctSenderPassword { get; set; }
+
         [NotMapped]
+        [Required(ErrorMessage = "Intacct Sender Password is required.")]
         public string strIntacctSenderPassword { get; set; }
+        
         [Required]
         public string JournalURL { get; set; }
-        [Required]
+
+        //[Required]
         public byte[] KeyPayAPI { get; set; }
+
         [NotMapped]
+        [Required(ErrorMessage = "KeyPay API is required.")]
         public string strKeyPayAPI { get; set; }
+
         [Required]
         public string BusinessID { get; set; }
+
         [Required]
         public string Journal { get; set; }
+
         [Required]
         public string PostingMode { get; set; }
+
         [Required]
         public string LogFiles { get; set; }
+
         [Required]
         [DataType(DataType.EmailAddress)]
         public string FromEmail { get; set; }
-        [Required]
+
+        //[Required]
         public byte[] EmailPassword { get; set; }
+
         [NotMapped]
+        [Required(ErrorMessage = "Email Password is required.")]
         public string strEmailPassword { get; set; }
+
         [Required]
         public string SMTPServer { get; set; }
+
         [Required]
         public string EmailPort { get; set; }
+        
         [Required]
         public bool SSL { get; set; }
+        
         [Required]
         [DataType(DataType.EmailAddress)]
         public string ToEmail { get; set; }
+        
         [DataType(DataType.EmailAddress)]
         public string CCEmail { get; set; }
+        
         public int Department { get; set; }
+        
         public int Location { get; set; }
+        
         public int Project { get; set; }
+
     }
 
     public enum PostingModes
