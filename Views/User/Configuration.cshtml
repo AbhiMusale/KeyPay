@@ -161,6 +161,14 @@
                 <div class="panel-heading">Email</div>
                 <div class="panel-body">
                     <div class="form-group">
+                        <label class="control-label col-md-3">Email User</label>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.EmailUser, new { htmlAttributes = new { @class = "form-control", placeholder = "Email User", maxlength = 40, style = "cursor: default;" } })
+                            @*@Html.ValidationMessageFor(model => model.EmailUser, "", new { @class = "text-danger" })*@
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label class="control-label col-md-3">From Email</label>
                         <div class="col-md-9">
                             @Html.EditorFor(model => model.FromEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "From Email", maxlength = 40, style = "cursor: default;" } })
