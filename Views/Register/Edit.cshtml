@@ -11,7 +11,6 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>User</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ID)
@@ -19,7 +18,7 @@
         <div class="form-group">
             <label class="control-label col-md-3">User Name</label>
             <div class="col-md-9">
-                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", placeholder = "User Name", maxlength = 40, disabled = true, style = "cursor: default;" } })
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", placeholder = "User Name", maxlength = 40, style = "cursor: default;" } })
                 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -27,8 +26,8 @@
         <div class="form-group">
             <label class="control-label col-md-3">New Password</label>
             <div class="col-md-9">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "New Password", minlength = 8, maxlength = 16 } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.strPassword, new { htmlAttributes = new { @class = "form-control", placeholder = "New Password", minlength = 8, maxlength = 16 } })
+                @Html.ValidationMessageFor(model => model.strPassword, "", new { @class = "text-danger" })
             </div>
         </div>
 

@@ -9,6 +9,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using System.Web.UI.WebControls;
 
 namespace KeyPay.Controllers
@@ -30,6 +31,7 @@ namespace KeyPay.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Login(User user)
         {
             using (UsersConfigModel usersConfigModel = new UsersConfigModel())
@@ -41,6 +43,7 @@ namespace KeyPay.Controllers
                     string dbDecryptedPassword = DecryptData(dbPassword);
                     if (user.strPassword == dbDecryptedPassword)
                     {
+                        FormsAuthentication.SetAuthCookie(user.UserName, true);
                         return RedirectToAction("Configuration", "User");
                     }
                     else
@@ -102,6 +105,14 @@ namespace KeyPay.Controllers
                 ViewBag.Message = ex.Message;
                 return View();
             }
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
         }
 
         //string DecryptData(string data)

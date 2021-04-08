@@ -30,7 +30,7 @@ namespace KeyPay.Models
         public string strPassword { get; set; }
 
         [NotMapped]
-        [Required]
+        [Required(ErrorMessage = "The Confirm Password field is required.")]
         [DataType(DataType.Password)]
         [Compare("strPassword", ErrorMessage = "Password does not match!")]
         public string ConfirmPassword { get; set; }

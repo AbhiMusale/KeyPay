@@ -106,6 +106,7 @@ namespace KeyPay.Controllers
                     // TODO: Add update logic here
                     using (UsersConfigModel usersConfigModel = new UsersConfigModel())
                     {
+                        user.Password = EncryptData(user.strPassword);
                         //usersConfigModel.Users.AddOrUpdate(user);
                         usersConfigModel.Entry(user).State = EntityState.Modified;
                         usersConfigModel.SaveChanges();
