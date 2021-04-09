@@ -64,11 +64,19 @@ namespace KeyPay.Controllers
         {
             ModelState.Clear();
             var data = usersConfigModel.Configurations.FirstOrDefault();
-            data.strIntacctUserName = DecryptData(data.IntacctUserName);
-            data.strIntacctPassword = DecryptData(data.IntacctPassword);
-            data.strIntacctSenderPassword = DecryptData(data.IntacctSenderPassword);
-            data.strKeyPayAPI = DecryptData(data.KeyPayAPI);
-            data.strEmailPassword = DecryptData(data.EmailPassword);
+            if (data != null)
+            {
+                if (data.IntacctUserName != null)
+                    data.strIntacctUserName = DecryptData(data.IntacctUserName);
+                if (data.IntacctPassword != null)
+                    data.strIntacctPassword = DecryptData(data.IntacctPassword);
+                if (data.IntacctSenderPassword != null)
+                    data.strIntacctSenderPassword = DecryptData(data.IntacctSenderPassword);
+                if (data.KeyPayAPI != null)
+                    data.strKeyPayAPI = DecryptData(data.KeyPayAPI);
+                if (data.EmailPassword != null)
+                    data.strEmailPassword = DecryptData(data.EmailPassword);
+            }
             return View(data);
         }
 

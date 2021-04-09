@@ -14,16 +14,17 @@ namespace KeyPay.Models
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Runtime.InteropServices;
 
     public partial class Configuration
     {
 
         public int ID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Intacct URL is required.")]
         public string IntacctURL { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Intacct Company ID is required.")]
         public string IntacctCompanyID { get; set; }
 
         //[Required]
@@ -40,7 +41,7 @@ namespace KeyPay.Models
         [Required(ErrorMessage = "Intacct Password is required.")]
         public string strIntacctPassword { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Intacct Sender ID is required.")]
         public string IntacctSenderID { get; set; }
 
         //[Required]
@@ -50,7 +51,7 @@ namespace KeyPay.Models
         [Required(ErrorMessage = "Intacct Sender Password is required.")]
         public string strIntacctSenderPassword { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Journal URL is required.")]
         public string JournalURL { get; set; }
 
         //[Required]
@@ -60,19 +61,19 @@ namespace KeyPay.Models
         [Required(ErrorMessage = "KeyPay API is required.")]
         public string strKeyPayAPI { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Business ID is required.")]
         public string BusinessID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Journal is required.")]
         public string Journal { get; set; }
 
         [Required]
         public string PostingMode { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Log files path is required.")]
         public string LogFiles { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "From email address is required.")]
         [DataType(DataType.EmailAddress)]
         public string FromEmail { get; set; }
 
@@ -83,16 +84,16 @@ namespace KeyPay.Models
         [Required(ErrorMessage = "Email Password is required.")]
         public string strEmailPassword { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "SMTP Server is required.")]
         public string SMTPServer { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Email Port is required.")]
         public string EmailPort { get; set; }
 
         [Required]
         public bool SSL { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To email address is required.")]
         [DataType(DataType.EmailAddress)]
         public string ToEmail { get; set; }
 
