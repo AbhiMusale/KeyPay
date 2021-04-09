@@ -18,6 +18,7 @@ namespace KeyPay.Models
 
         [Required(ErrorMessage = "User Name required.")]
         //[DataType(DataType.EmailAddress)]
+        [RegularExpression(@"^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$", ErrorMessage = "User name is invalid.")]
         public string UserName { get; set; }
 
         //[Required]

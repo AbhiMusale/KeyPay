@@ -74,6 +74,8 @@ namespace KeyPay.Models
         public string LogFiles { get; set; }
 
         [Required(ErrorMessage = "From email address is required.")]
+        //[EmailAddress(ErrorMessage = "From email address is invalid.")]
+        [RegularExpression(@"^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$", ErrorMessage = "From email address is invalid.")]
         [DataType(DataType.EmailAddress)]
         public string FromEmail { get; set; }
 
@@ -94,9 +96,13 @@ namespace KeyPay.Models
         public bool SSL { get; set; }
 
         [Required(ErrorMessage = "To email address is required.")]
+        //[EmailAddress(ErrorMessage = "To email address is invalid.")]
+        [RegularExpression(@"^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$", ErrorMessage = "To email address is invalid.")]
         [DataType(DataType.EmailAddress)]
         public string ToEmail { get; set; }
 
+        //[EmailAddress(ErrorMessage = "CC email address is invalid.")]
+        [RegularExpression(@"^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$", ErrorMessage = "CC email address is invalid.")]
         [DataType(DataType.EmailAddress)]
         public string CCEmail { get; set; }
 
